@@ -1,0 +1,12 @@
+name: 'Labeling on pull request'
+description: 'label management with pull request event'
+inputs:
+  label_to_delete:
+    description: 'label to delete'
+    required: true
+  label_to_add:
+    description: 'label to add'
+    required: true
+runs:
+  using: 'node12'
+  main: 'index.js'

@@ -1,0 +1,12 @@
+{
+  "name": "githubaction-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/tomoyukikashiro/githubaction-test.git",
+  "author": "tomoyukikashiro <ksrtmyk@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  }
+}

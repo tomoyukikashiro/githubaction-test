@@ -1,0 +1,17 @@
+name: Workflow for labeling
+on: [pull_request_review]
+
+jobs:
+  labeling:
+    name: Labeling
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: replace approved label with change-request label
+        uses: ./.github/actions/pull-request-labels
+        with:
+          label_to_delete: 'レビュアー待ち'
+          label_to_add: 'レビュー完了'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
