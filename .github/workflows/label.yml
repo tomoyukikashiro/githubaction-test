@@ -12,7 +12,9 @@ jobs:
       - name: replace approved label with change-request label
         uses: ./.github/actions/pull-request-labels
         with:
-          label_to_delete: 'レビュアー待ち'
-          label_to_add: 'レビュー完了'
+          approval_labels_to_delete: 'レビュアー待ち,主役待ち,レビュー中'
+          approval_labels_to_add: 'レビュー完了'
+          request_change_labels_to_delete: 'レビュー完了,レビュアー待ち'
+          request_change_labels_to_add: 'レビュー中,主役待ち'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

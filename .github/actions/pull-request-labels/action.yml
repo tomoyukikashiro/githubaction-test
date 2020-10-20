@@ -1,12 +1,18 @@
 name: 'Labeling on pull request'
 description: 'label management with pull request event'
 inputs:
-  label_to_delete:
-    description: 'label to delete'
-    required: true
-  label_to_add:
-    description: 'label to add'
-    required: true
+  approval_labels_to_delete:
+    description: 'labels to delete when reviewer approve. (comma separated format)'
+    required: false
+  approval_labels_to_add:
+    description: 'labels to add when reviewer approve. (comma separated format)'
+    required: false
+  request_change_labels_to_delete:
+    description: 'labels to delete when reviewer request change. (comma separated format)'
+    required: false
+  request_change_labels_to_add:
+    description: 'labels to add when reviewer request change. (comma separated format)'
+    required: false
 runs:
   using: 'node12'
   main: 'index.js'
