@@ -8,6 +8,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+      - run: npm install @actions/github @actions/core
       - name: replace approved label with change-request label
         uses: ./.github/actions/pull-request-labels
         with:

@@ -8,7 +8,10 @@ const LABEL_TO_DELETE = core.getInput('label_to_delete')
 const LABEL_TO_ADD = core.getInput('label_to_add')
 const eventData = github.context.payload;
 
-if (eventData.submitted !== 'submitted' || eventData.review.state !== 'approved') {
+core.info(LABEL_TO_DELETE)
+core.info(LABEL_TO_ADD)
+
+if (eventData.action !== 'submitted' || eventData.review.state !== 'approved') {
   core.info('[Finish] PR have not been approved.');
   return;
 }
@@ -42,12 +45,15 @@ const { number: pullNumber } = eventData.pull_request;
       labels: [LABEL_TO_ADD]
     });
 
+    core.info('add label')
+
     await octokit.issues.removeLabel({
       owner,
       repo,
       issue_number: pullNumber,
       name: LABEL_TO_DELETE
     });
+    core.info('remove label')
     core.info('[Finish] All reviewers have just approved.');
 
   } catch (e) {
