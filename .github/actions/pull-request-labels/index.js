@@ -35,10 +35,10 @@ const approvalFlow = async (reviews, labels) => {
   const labelsToAdd = toLabelsArray('approval_labels_to_add');
   const uniqueReviewerIds = uniq(reviews.map(review => review.user.id));
   const approvedReviews = uniqueReviewerIds
-    .filter(userId => !!reviews.find(review => review.user.id === userId && review.state === 'APPROVED'));
+    .filter(userId => reviews.some(review => review.user.id === userId && review.state === 'APPROVED'));
 
   if (uniqueReviewerIds.length !== approvedReviews.length) {
-    core.info('[FINISH] All reviewers have not approved yet.');
+    core.info(`[FINISH] All reviewers have not approved yet(${approvedReviews.length}/${uniqueReviewerIds.length}).`);
     return;
   }
   await replaceLabels(labels, labelsToDelete, labelsToAdd);
